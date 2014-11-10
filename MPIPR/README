@@ -1,0 +1,21 @@
+To compile MPIPageRank, type at the command prompt
+>> javac -cp .:$MPJ_HOME/lib/mpj.jar MPIPageRank.java
+
+To run MPIPageRank using a single node, type
+>> mpjrun.sh -np <numProc> MPIPageRank <inputFile> <outputFile> <delta> <df> <i\
+terations>
+   --np: indicates the use of processes in computation
+   --numProc: the number of processes used in computation
+   --inputFile: the name of the file with the input data (NOTE: if the file
+ is not in the same directory as SequentialPageRank, you must put the pathname
+ of the file).
+   --outputFile: the name of the file to be created with the output data
+   --delta: the cut-off difference between two consecutive calculations (recomm\
+ended number = .001)
+   --df: the damping factor (recommended number = .85)
+   --iterations: the number of times pagerank will run the algorithm (minimum r\
+ecommended number = 10);
+**Note: the program will terminate when it first reaches delta or iterations
+
+To run MPIPageRank using multiple nodes, type
+>> mpjrun.sh -dev niodev -np <numProc> -MPIPageRank <inputFile> <outputFile> <d\elta> <df> <iterations>

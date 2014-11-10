@@ -1,0 +1,53 @@
+package indiana.cgl.hadoop.pagerank;
+
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+
+import java.io.IOException;
+
+/**
+ * This class has to be implemented by the student.
+ */
+public class PageRankMapper extends Mapper<LongWritable, Text, LongWritable, Text> {
+    /**
+     * The key has to be ignored in this one. The value is the output from the GraphMapper/Reducer
+     * each line by line.
+     *
+     * @param key key is ignored in the computation
+     * @param value the text value from the mapper. it is of the form sourceUrl\trankValue#targetUrlsList.
+     * @param context hadoop context
+     * @throws IOException if an error occurs
+     * @throws InterruptedException if an error occurs
+     */
+
+    /*private DoubleWritable rank = new DoubleWritable();
+      private Text page = new Text();*/
+
+    protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+	/*
+	//Splitting each line of "value" 
+	String[] lines = value.toString().split("\\n");
+
+	//Iterating through lines
+	for(String line : lines) {
+	    
+	    //Extracting sourceUrl
+	    String[] linesplit = line.split("\\t");
+	    String sourceUrl = linesplit[0];
+
+	    //Extracting rankValue
+	    String[] outbounds = linesplit[1].split("#");
+	    rank.set(Double.parseDouble(outbounds[0]));
+
+	    //Extracting targetUrls 
+	    for(int i = 1; i < outbounds.length; i++) {
+		page.set(outbounds[i]);
+		context.write(page, rank);
+	    }
+	    } */
+	System.out.println("Key for mapper: " + key);
+	System.out.println("Value for mapper: " + value); 
+	context.write(key, value);
+    }
+}

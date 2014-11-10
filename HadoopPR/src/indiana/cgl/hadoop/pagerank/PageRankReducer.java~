@@ -1,0 +1,27 @@
+package indiana.cgl.hadoop.pagerank;
+
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Reducer;
+
+import java.io.IOException;
+
+/**
+ * This class has to be implemented by the student.
+ */
+public class PageRankReducer extends Reducer<LongWritable, Text, LongWritable, Text> {
+
+    /**
+     * Implement this. For a particular key you will get an array containing text values. Each text value can be one of two formats.
+     * 1. A single rank value contributed to this url key from other pages
+     * 2. The list of out urls along with the rank. i.e. sourceUrl\trankValue#targetUrlsList.
+     * @param key source url
+     * @param values values are describes above
+     * @param context hadoop context
+     * @throws IOException if an error occurs
+     * @throws InterruptedException if an error occurs
+     */
+    public void reduce(LongWritable key, Iterable<Text> values,
+                       Context context) throws IOException, InterruptedException {
+    }
+}

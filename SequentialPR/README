@@ -1,0 +1,18 @@
+To run SequentialPageRank, type at the command prompt
+>>java SequentialPageRank <inputFile> <outputFile> <iterations> <df>
+       --inputFile: the name of the file with the input data (NOTE: if the file
+ is not in the same directory as SequentialPageRank, you must put the pathname
+ of the file). 
+       --outputFile: the name of the file to be created with the output data
+       --iterations: the number of times pagerank will run the algorithm (minimum recommended number = 10)
+       --df: the damping factor (recommended number = .85)
+
+SequentialPageRank writes the input URLs in sequential page rank order to the output file. In addition, it prints to the command line the top 10 ranking urls along with the number of iterations. 
+
+Questions & Answers
+1. What is the damping factor about? How is the damping factor determined? 
+	The damping factor is the probability that a "random surfer" will not continue surfing the web by clicking on a link from a given web-page and will instead type in a new URL. The damping factor is determined empirically and is generally agreed upon to be around .85. 
+2. What is dangling node? How do you handle dangling node in PageRank calculation?
+	A dangling node is a URL that does not have any links to any other URL. This could cause problems because in the PageRank calculation, a URL's page rank value is divided by its number of outbound links. If this number is zero, then dividing by this number would cause an error. To handle this, we assume that a dangling node has links to all other URLs in the set. Practically speaking, this means that in the adjacency matrix, all keys have a dangling node stored in their inbounds arrayList, and when calculating the ratio of rank value to number of outbound links (PR(v) / L(v)), the number of outbound links is equal to the total number of links (minus one for the dangling URL). 
+3. When do you stop PageRank calculation? and why?
+	There are two ways you can stop the PageRank calculation: (1) by setting a threshold for how accurate a given value is and (2) by setting a fixed number of iterations. In this implementation, the user is asked to supply the number of iterations PageRank is to perform. We must set a stopping point because the page rank calculation is an iterative approach: each iteration converges to the true page rank value of each URL, but since we do not know this value before the calculation, it is impossible to tell on which iteration we will arrive at the answer. Therefore, we must set a stopping point and declare it "close enough" to the true answer; in our implementation, 10 iterations suffices. 
